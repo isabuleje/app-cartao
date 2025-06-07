@@ -1,0 +1,83 @@
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Cria um grid responsivo com colunas de no mínimo 300px */
+  gap: 20px; /* Espaçamento entre os cards */
+  padding: 20px;
+}
+
+.product-card {
+  display: flex; /* Usa flexbox para o layout de duas colunas */
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  overflow: hidden; /* Garante que as bordas arredondadas da imagem não sejam cortadas */
+  transition: transform 0.3s ease; /* Transição suave para o efeito de hover */
+}
+
+.product-card:hover {
+  transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+}
+
+.product-image-container {
+  flex: 1; /* A imagem ocupa a metade superior do card */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.product-image {
+  width: 100%;
+  max-width: 250px; /* Define a largura máxima da imagem */
+  height: auto;
+  object-fit: cover; /* Mantém a proporção e cobre o espaço */
+  border-radius: 8px 8px 0 0; /* Bordas arredondadas apenas na parte superior */
+}
+
+.product-info {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribui o espaço entre os elementos internos */
+}
+
+
+.product-info h3 {
+  margin-top: 0; /* Remove a margem superior padrão do h3 */
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.product-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+
+.product-quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto; /* Empurra os botões para a parte inferior */
+}
+
+.product-quantity-container button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.product-quantity-container button:hover {
+  background-color: #f0f0f0;
+}
+
+.product-quantity-container p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #444;
+}

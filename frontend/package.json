@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,15 @@
     "url": "https://github.com/isabuleje/app-cartao/issues"
   },
   "homepage": "https://github.com/isabuleje/app-cartao#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eslint": "^9.28.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.5.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
 }

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 //rcc gera uma classe
 //rafc gera uma estrutura de inicial de arrow
+
+//Tá funcionando
 export default class Cart extends Component {
      constructor(){
         super()
@@ -16,7 +18,7 @@ export default class Cart extends Component {
   render() {
     return (
       <>
-        <div> Oiiii, {this.state}</div>
+        <div> Oiiii, {this.state.first_name}</div>
         <button onClick={this.change_name}> Change name </button>
       
       </>
