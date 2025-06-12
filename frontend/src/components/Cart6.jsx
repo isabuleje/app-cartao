@@ -1,70 +1,59 @@
-import React, {useEffect, useState} from 'react'
-import './Cart.css'
+import React, { useState, useEffect } from 'react'; // Importa React e os hooks useState e useEffect
+import './Cart4.css'
 
-//rafce pra gerar a estrutura
-
+// Cria um componente funcional chamado Cart6
 const Cart6 = () => {
-  //definicao do estado 'products' com o uso do hook useState, inicialmente com um
-  const [products, setProducts] = React.useState([]);
+  // Define o estado 'products' usando o hook useState. Inicialmente, é um array vazio.
+  const [products, setProducts] = useState([]);
+  // Define o estado 'loading' para controlar se os dados estão sendo carregados.
+  const [loading, setLoading] = useState(true);
+  // Define o estado 'error' para armazenar qualquer erro que ocorra durante o carregamento.
+  const [error, setError] = useState(null);
+  // Define o estado 'currentPage' para controlar a página atual.
+  const [currentPage, setCurrentPage] = useState(1);
+  // Define o número de produtos por página.
+  const productsPerPage = 3;
 
-  //definicao do estado loading, para controlar o se os dados estao sendo carregados
-  const[loading, setLoading] = React.useState(true);
-
-  //define o estado 'error' para armazenar qualquer err que ocorra durante o carregamento
-  const[error, setError] = React.useState(null);
-
-  //define o estado 'currentPage' para controlar a pagina atual
-  const[currentPage, setCurrentPage] = useState(1);
-
-  //define eo numero de produto por pagina
-  const productPerPage = 3;
-
-
-  //setEffect para buscar os dados do arquivo JSON quando o componente é montando
+  // Usa o hook useEffect para buscar os dados do arquivo JSON quando o componente é montado.
   useEffect(() => {
-    const fetchProducts = async () =>{
-      //faz uma requesicao GET para o arquivo 'produto.json' quando o componente é um
-      try{
-        //converte a resposta para o formato JSON
-        const response = await fetch('./products.json')
-
-        //veriica se a resposta da aquisicao nao foi bem sucessida
-        if(!response.ok){
-          //se a respota nao for bem sucessida, anca um erro com o status de erro
-          throw new Error("Erro a buscar os produtos: ${response.status");
+    const fetchProducts = async () => {
+      try {
+        // Faz uma requisição GET para o arquivo 'products.json'.
+        const response = await fetch('/products.json');
+        // Verifica se a resposta da requisição foi bem-sucedida (status 200-299).
+        if (!response.ok) {
+          // Se a resposta não for bem-sucedida, lança um erro com o status do erro.
+          throw new Error("Erro ao buscar os produtos: ${response.status}");
         }
-        //converte a resposta para o formato JSON
+        // Converte a resposta para o formato JSON.
         const data = await response.json();
-        //atualiza o estado 'products' com os dados recebidos
+        // Atualiza o estado 'products' com os dados obtidos.
         setProducts(data);
-        
-      }catch(error){
-        //se ocorreu algum erro durante o processo de busca, atualiza o estado 'error'
+      } catch (error) {
+        // Se ocorrer algum erro durante o processo de busca, atualiza o estado 'error'.
         setError(error);
-      }finally{
-        //independente de sucesso ou erro, atualiza o estado 'loading' para false 
+      } finally {
+        // Independente de sucesso ou erro, atualiza o estado 'loading' para false.
         setLoading(false);
-
       }
-    }
+    };
 
-    //chama a funcao fetchProdutos para iniciar a busca por dados
+    // Chama a função fetchProducts para iniciar a busca dos dados.
     fetchProducts();
-  },{});// O array vazio como segundo argumento garante que o efeito é executado apenas uma vez, na montagem do componente.
+  }, []); // O array vazio como segundo argumento garante que o efeito é executado apenas uma vez, na montagem do componente.
 
-   const incrementQuantity = (id) => {
-    setProducts(prev =>
-      prev.map(product =>
-        product.id === id
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
+  // Funções para incrementar e decrementar a quantidade dos produtos no carrinho.
+  const incrementQuantity = (id) => {
+    setProducts(prevProducts =>
+      prevProducts.map(product =>
+        product.id === id ? { ...product, quantity: product.quantity + 1 } : product
       )
     );
   };
 
   const decrementQuantity = (id) => {
-    setProducts(prev =>
-      prev.map(product =>
+    setProducts(prevProducts =>
+      prevProducts.map(product =>
         product.id === id && product.quantity > 0
           ? { ...product, quantity: product.quantity - 1 }
           : product
@@ -72,28 +61,31 @@ const Cart6 = () => {
     );
   };
 
-  //Encontra o indice do ultimo produto da pagina atual
-  const indexOfLastProduct = currentPage * productPerPage;
-  //Obtem os produtos da pagina atual
-  const indexOfFirstProduct = indexOfLastProduct - productPerPage;
-  //Funcao para mudar a pagina
-  const currentProducts = products.slice(indexOfFirstProduct,indexOfLastProduct);
-  //Funcao para mudar a pagina
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  //Calcula o numero total de paginas
-  const totalPages = Math.ceil(products.lenght/ productPerPage);
-  
-  //renderizacao condicional baseada nos estados 'loading' e 'error'
-  if(loading){
-    //se 'loading' for true, exibe a mensagem de carregamento
-    return <div>Carregando produtos....</div>
-  }if (error){
-    //se 'error' nao for null, ele exibe uma messagem de erro
-    return <div>Erro: {error.message}</div>
-  }
-  //se nao estiver carregando e houver erro, renderiza a lista de produtos
+  // Lógica para paginação
+  // Encontra o índice do último produto da página atual
+  const indexOfLastProduct = currentPage * productsPerPage; 
+  // Encontra o índice do primeiro produto da página atual
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage; 
+  // Obtém os produtos da página atual
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct); 
+  // Função para mudar a página
+  const paginate = (pageNumber) => setCurrentPage(pageNumber); 
+  // Calcula o número total de páginas
+  const totalPages = Math.ceil(products.length / productsPerPage); 
 
-     return (
+  // Renderização condicional baseada nos estados 'loading' e 'error'.
+  if (loading) {
+    // Se 'loading' for true, exibe uma mensagem de carregamento.
+    return <div>Carregando produtos...</div>;
+  }
+
+  if (error) {
+    // Se 'error' não for null, exibe uma mensagem de erro.
+    return <div>Erro: {error.message}</div>;
+  }
+
+  // Se não estiver carregando e não houver erro, renderiza a lista de produtos.
+  return (
     <div>
       <h1 style={{ textAlign: 'center', margin: '20px 0' }}>Nossos Produtos</h1> {/* Adiciona um título à página */}
       <div className="products">
@@ -133,7 +125,7 @@ const Cart6 = () => {
         ))}
       </div>
     </div>
-     );
-}
+  );
+};
 
-export default Cart6
+export default Cart6;
