@@ -8,7 +8,11 @@ import Footer from './components/Footer.jsx'
 
 function App() {
   return(
+    <>
+    <Header/>
     <Cart4> </Cart4>
+    <Footer/>
+    </>
   )
 
 }

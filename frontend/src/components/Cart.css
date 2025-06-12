@@ -2,16 +2,21 @@
 
 /* Container principal de produtos */
 .products {
+    margin: auto;
+  justify-content: center;
+  align-items: center;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
+  
   max-width: 1200px;
-  margin: 0 auto;
+
 }
 
 /* Card de produto */
 .product {
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;

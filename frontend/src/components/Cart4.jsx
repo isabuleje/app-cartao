@@ -35,7 +35,7 @@ const Cart4 = () => {
         <div className='product' key={product.id}>
           <div className='product_details'>
             <h3>{product.product_name}</h3>
-            <p>Lorem ipsum dolor sit amet consectetur...</p>
+            <p>Descricao</p>
             <h3>R${product.price.toFixed(2)}</h3>
           </div>
           <div className='product_quantity_container'>
