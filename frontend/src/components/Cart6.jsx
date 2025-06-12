@@ -3,7 +3,7 @@ import './Cart.css'
 
 //rafce pra gerar a estrutura
 
-const Cart5 = () => {
+const Cart6 = () => {
   //definicao do estado 'products' com o uso do hook useState, inicialmente com um
   const [products, setProducts] = React.useState([]);
 
