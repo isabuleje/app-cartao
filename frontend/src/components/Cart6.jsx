@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Cart.css'
 
 //rafce pra gerar a estrutura
@@ -12,6 +12,13 @@ const Cart5 = () => {
 
   //define o estado 'error' para armazenar qualquer err que ocorra durante o carregamento
   const[error, setError] = React.useState(null);
+
+  //define o estado 'currentPage' para controlar a pagina atual
+  const[currentPage, setCurrentPage] = useState(1);
+
+  //define eo numero de produto por pagina
+  const productPerPage = 3;
+
 
   //setEffect para buscar os dados do arquivo JSON quando o componente é montando
   useEffect(() => {
@@ -64,6 +71,17 @@ const Cart5 = () => {
       )
     );
   };
+
+  //Encontra o indice do ultimo produto da pagina atual
+  const indexOfLastProduct = currentPage * productPerPage;
+  //Obtem os produtos da pagina atual
+  const indexOfFirstProduct = indexOfLastProduct - productPerPage;
+  //Funcao para mudar a pagina
+  const currentProducts = products.slice(indexOfFirstProduct,indexOfLastProduct);
+  //Funcao para mudar a pagina
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  //Calcula o numero total de paginas
+  const totalPages = Math.ceil(products.lenght/ productPerPage);
   
   //renderizacao condicional baseada nos estados 'loading' e 'error'
   if(loading){
@@ -76,16 +94,18 @@ const Cart5 = () => {
   //se nao estiver carregando e houver erro, renderiza a lista de produtos
 
   return (
-    <div className='products'>
-      {products.map((product) => (
-        <div className='product' key={product.id}>
-          <div className='product_details'>
-            {product.image &&(
-                <img
-                    src = {product.image}
-                    alt = {product.product_name}
-                    style={{width:'100px', height:'auto'}}
-                />
+    <div>
+     <h1 style={{textAlign: 'center', margin: '20px 0'}}>Nossos produtos</h1>
+        <div className='products'>
+        {currentProducts.map((product) => (
+            <div className='product' key={product.id}>
+            <div className='product_details'>
+                {product.image &&(
+                    <img
+                        src = {product.image}
+                        alt = {product.product_name}
+                        style={{width:'100px', height:'auto'}}
+                    />
             )}
             <h3>{product.product_name}</h3>
             <p>Produto dolor sit amet consectetur adipiscing elite</p>
@@ -98,6 +118,7 @@ const Cart5 = () => {
           </div>
         </div>
       ))}
+        </div>
     </div>
   );
 }
