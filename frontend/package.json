@@ -1,14 +1,17 @@
 {
-  "name": "cartao",
+  "name": "app-cartao",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/isabuleje/app-cartao.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
