@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
+import './Cart2.css'
 
+//Esse aqui tbm tá funcionando
 export default class Cart2 extends Component {
     constructor(){
         super()
-        this.state(
-            this.products[
+        this.state = {
+            products: [
                 {id:1, product_name:"Fanta", price: 4.5},
                 {id:2, product_name:"Sprite", price: 4},
                 {id:3, product_name:"Coca cola", price: 3}
             ]
-        )
+        }
     }
 
 
