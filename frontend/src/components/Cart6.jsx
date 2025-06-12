@@ -93,34 +93,47 @@ const Cart5 = () => {
   }
   //se nao estiver carregando e houver erro, renderiza a lista de produtos
 
-  return (
+     return (
     <div>
-     <h1 style={{textAlign: 'center', margin: '20px 0'}}>Nossos produtos</h1>
-        <div className='products'>
+      <h1 style={{ textAlign: 'center', margin: '20px 0' }}>Nossos Produtos</h1> {/* Adiciona um título à página */}
+      <div className="products">
         {currentProducts.map((product) => (
-            <div className='product' key={product.id}>
-            <div className='product_details'>
-                {product.image &&(
-                    <img
-                        src = {product.image}
-                        alt = {product.product_name}
-                        style={{width:'100px', height:'auto'}}
-                    />
-            )}
-            <h3>{product.product_name}</h3>
-            <p>Produto dolor sit amet consectetur adipiscing elite</p>
-            <h3>R$ {product.price.toFixed(2)}</h3>
+          <div className="product" key={product.id}>
+            <div className="product_details">
+              {product.image && (
+                <img
+                  src={product.image}
+                  alt={product.product_name}
+                  style={{ width: '100px', height: 'auto' }}
+                />
+              )}
+              <h3>{product.product_name}</h3>
+              <p>Produto dolor sit amet consectetur adipiscing elite</p>
+              <h3>R$ {product.price.toFixed(2)}</h3>
+            </div>
+            <div className="product_quantity-container">
+              <button onClick={() => incrementQuantity(product.id)}>+</button>
+              <p>{product.quantity}</p>
+              <button onClick={() => decrementQuantity(product.id)}>-</button>
+            </div>
           </div>
-          <div className='product_quantity-container'>
-            <button onClick={() => incrementQuantity(product.id)}>+</button>
-            <p>{product.quantity}</p>
-            <button onClick={() => decrementQuantity(product.id)}>-</button>
-          </div>
-        </div>
-      ))}
-        </div>
+        ))}
+      </div>
+      {/* Adiciona a navegação de paginação */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            style={{ margin: '0 5px', padding: '8px 12px' }}
+            disabled={currentPage === index + 1} // Desabilita o botão da página atual
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
-  );
+     );
 }
 
 export default Cart5
