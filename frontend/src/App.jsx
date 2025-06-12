@@ -1,8 +1,9 @@
 import './App.css'
+import Cart5 from "/.components/Cart5.jsx";
 
 function App() {
   return(
-      <h1>aff</h1>
+      <Cart5></Cart5>
   )
 
 }

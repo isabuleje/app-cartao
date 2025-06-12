@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "product_name": "Produto 1",
+    "price": 25.00,
+    "quantity": 1,
+    "image": "/images/produto1.jpg"
+  },
+  {
+    "id": 2,
+    "product_name": "Produto 2",
+    "price": 10.50,
+    "quantity": 3,
+     "image": "/images/produto2.jpg"
+  },
+  {
+    "id": 3,
+    "product_name": "Produto 3",
+    "price": 8.25,
+    "quantity": 1,
+    "image": "/images/produto3.jpg"
+  },
+  {
+    "id": 4,
+    "product_name": "Produto 4",
+    "price": 8.75,
+    "quantity": 10,
+    "image": "/images/produto4.jpg"
+  },
+  {
+    "id": 3,
+    "product_name": "Produto 5",
+    "price": 78.25,
+    "quantity": 11,
+    "image": "/images/produto5.jpg"
+  }
+]
