@@ -136,4 +136,4 @@ const Cart5 = () => {
      );
 }
 
-export default Cart5
+export default Cart6
